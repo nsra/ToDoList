@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:background="@drawable/item_bg"
+    android:layout_margin="22dp"
+    >
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:text="Home"
+        android:lineSpacingExtra="6sp"
+        android:textColor="#000"
+        android:lineHeight="28dp"
+        android:paddingStart="17dp"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:paddingLeft="17dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="#000"
+        android:lineHeight="28dp"
+        android:lineSpacingExtra="11sp"
+        android:textSize="14sp"
+        android:layout_gravity="center"
+        android:text="3 tasks" />
+</LinearLayout>

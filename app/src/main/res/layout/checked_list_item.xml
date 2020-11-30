@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="50dp"
+android:layout_margin="22dp"
+android:background="@drawable/item_bg"
+>
+
+
+<ImageView
+    android:id="@+id/circle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:srcCompat="@drawable/ic_baseline_check_24"
+    android:background="@drawable/circle_checked"
+    android:layout_centerVertical="true"
+    android:layout_margin="10dp"
+
+
+    />
+
+<TextView
+    android:id="@+id/textView3"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:lineHeight="28dp"
+    android:lineSpacingExtra="13sp"
+    android:text="Meeting with clients"
+    android:textColor="#CDCCCF"
+    android:fontFamily="@font/montserrat"
+    android:textSize="12sp"
+    android:layout_toEndOf="@+id/circle"
+    android:layout_centerVertical="true"
+    android:layout_toRightOf="@+id/circle" />
+    <View
+        android:id="@+id/divider"
+        android:layout_width="300dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="24dp"
+        android:background="#E5E5E5"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3" />
+
+
+
+</RelativeLayout>
