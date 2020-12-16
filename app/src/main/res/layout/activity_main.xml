@@ -41,6 +41,7 @@
         tools:ignore="MissingConstraints"
         android:textColor="@android:color/white"
         android:textSize="20sp"
+        android:onClick="nextscreen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="40dp"

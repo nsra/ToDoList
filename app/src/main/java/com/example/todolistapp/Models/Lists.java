@@ -1,28 +1,29 @@
 package com.example.todolistapp.Models;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity
 public class Lists {
+    @PrimaryKey(autoGenerate = true)
+    private int id ;
     private String listname ;
-    private String listnum ;
 
-    public Lists(String listname, String listnum) {
+    public Lists(String listname) {
         this.listname = listname;
-        this.listnum = listnum;
+    }
+
+
+
+    public int getId() {
+        return id;
     }
 
     public String getListname() {
         return listname;
     }
 
-    public void setListname(String listname) {
-        this.listname = listname;
-    }
-
-    public String getListnum() {
-        return listnum;
-    }
-
-    public void setListnum(String listnum) {
-        this.listnum = listnum;
+    public void setId(int id) {
+        this.id = id;
     }
 }

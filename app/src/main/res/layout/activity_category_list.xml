@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="ListsToDo"
+        android:text="ThingsToDo"
         android:textColor="@android:color/white"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -28,6 +28,7 @@
         android:layout_height="15dp"
         android:layout_marginTop="32dp"
         android:src="@drawable/back"
+        android:onClick="back"
         app:layout_constraintEnd_toStartOf="@+id/tv7"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +42,7 @@
         android:layout_marginTop="32dp"
         android:src="@drawable/search"
         android:layout_marginEnd="20dp"
+        android:onClick="searchResults"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintTop_toTopOf="parent"
@@ -72,41 +74,57 @@
         app:layout_constraintTop_toBottomOf="@+id/tv7"
         android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="25sp"
+        android:textSize="12sp"
         android:layout_marginEnd="15dp"/>
 
 
     <EditText
-        android:id="@+id/creatlist"
+        android:id="@+id/creattask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/note_name"
+        android:layout_marginStart="60dp"
         android:background="@drawable/shape_ed"
+        android:hint="Create new list here"
         android:padding="10dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:drawableStart="@drawable/add"
-        android:hint="Create new task here"
+        android:layout_marginTop="40dp"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
-        android:drawablePadding="10dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/delet"
+        tools:layout_editor_absoluteY="193dp"
+        tools:ignore="MissingConstraints"
+        android:layout_marginEnd="30dp"/>
+
+
+    <ImageView
+        android:id="@+id/add_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:padding="20dp"
+        android:src="@drawable/add"
+        android:onClick="savetask"
+        app:layout_constraintBottom_toBottomOf="@+id/creatlist"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/note_name"
+        tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/task_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/creatlist" />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/creattask"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,6 +46,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
+        android:inputType="textPassword"
         android:padding="10dp"
         android:hint="@string/password"
         android:textColorHint="@android:color/white"/>
@@ -100,6 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LogIn"
+        android:onClick="Login"
         android:textSize="15sp"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
