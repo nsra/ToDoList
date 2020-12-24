@@ -32,6 +32,8 @@ public class ListsActivity extends AppCompatActivity {
     EditText search ;
     ArrayList<Lists> lists = new ArrayList<>();
     AddNewListViewModel mViewModel ;
+    ListsAdapter adapter ;
+    ArrayList<Lists> filteredList ;
 
 
     @Override
@@ -43,7 +45,7 @@ public class ListsActivity extends AppCompatActivity {
         search = findViewById(R.id.search);
         creatlist = findViewById(R.id.creatlist);
 
-        ListsAdapter adapter = new ListsAdapter(lists, new OnItemCilckListener() {
+         adapter = new ListsAdapter(lists, new OnItemCilckListener() {
             @Override
             public void onItemClick(Lists lists) {
                 Toast.makeText(ListsActivity.this, "clicked ", Toast.LENGTH_SHORT).show();
@@ -77,7 +79,6 @@ public class ListsActivity extends AppCompatActivity {
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                adapter.getFilter().filter(charSequence);
 
             }
 
@@ -88,6 +89,7 @@ public class ListsActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                filter(search.toString());
 
             }
         });
@@ -95,6 +97,17 @@ public class ListsActivity extends AppCompatActivity {
 
 
 
+
+
+    }
+    private void filter(String text){
+        filteredList= new ArrayList<>();
+        for (Lists example :lists){
+            if (example.getListname().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(example);
+            }
+        }
+        adapter.filterList(filteredList);
 
     }
 

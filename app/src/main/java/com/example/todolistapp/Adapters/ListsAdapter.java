@@ -82,32 +82,36 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ListViewHold
                 }
             });
         }}
-    public Filter getFilter(){
-        return  new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                String key = charSequence.toString();
-                if(key.isEmpty()){
-                    filteredUserData = mlists ;
-                }else {
-                    List<Lists> lstFilter = new ArrayList<>();
-                    for (Lists row : mlists){
-                        if (row.getListname().toLowerCase().contains(key.toLowerCase())){
-                            lstFilter.add(row);
-                        }
-                    }
-                    filteredUserData = lstFilter ;
-                }
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = filteredUserData ;
-                return filterResults;
-            }
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                filteredUserData=(List<Lists>) filterResults.values;
-                notifyDataSetChanged();
-            }
-        };
-
+//    public Filter getFilter(){
+//        return  new Filter() {
+//            @Override
+//            protected FilterResults performFiltering(CharSequence charSequence) {
+//                String key = charSequence.toString();
+//                if(key.isEmpty()){
+//                    filteredUserData = mlists ;
+//                }else {
+//                    List<Lists> lstFilter = new ArrayList<>();
+//                    for (Lists row : mlists){
+//                        if (row.getListname().toLowerCase().contains(key.toLowerCase())){
+//                            lstFilter.add(row);
+//                        }
+//                    }
+//                    filteredUserData = lstFilter ;
+//                }
+//                FilterResults filterResults = new FilterResults();
+//                filterResults.values = filteredUserData ;
+//                return filterResults;
+//            }
+//            @Override
+//            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+//                filteredUserData=(List<Lists>) filterResults.values;
+//                notifyDataSetChanged();
+//            }
+//        };
+//
+//    }
+    public void filterList(ArrayList<Lists> filteredList){
+        mlists = filteredList;
+        notifyDataSetChanged();
     }
 }
