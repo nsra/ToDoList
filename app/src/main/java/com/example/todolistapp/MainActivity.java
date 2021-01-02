@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Thread thread = new Thread(){
+        Thread thread = new Thread() {
             @Override
             public void run() {
 
@@ -21,11 +21,9 @@ public class MainActivity extends AppCompatActivity {
                     sleep(7000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }
+                } finally {
 
-                finally {
-
-                    Intent intent = new Intent(getApplicationContext() , CreateAccountActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), CreateAccountActivity.class);
                     startActivity(intent);
 
                 }
@@ -43,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void nextscreen(View view) {
-        Intent intent = new Intent(this , CreateAccountActivity.class);
+        Intent intent = new Intent(this, CreateAccountActivity.class);
         startActivity(intent);
     }
 

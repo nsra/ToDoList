@@ -17,9 +17,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText email , password ;
-    Button login ;
-    FirebaseAuth fAuth ;
+    EditText email, password;
+    Button login;
+    FirebaseAuth fAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,28 +37,28 @@ public class LoginActivity extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
 
     }
+
     private void loginListener() {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String useremail = email.getText().toString();
                 String userpassword = password.getText().toString();
-                if (TextUtils.isEmpty(useremail)){
+                if (TextUtils.isEmpty(useremail)) {
                     email.setError("Email is required");
                     return;
                 }
-                if (TextUtils.isEmpty(userpassword)){
+                if (TextUtils.isEmpty(userpassword)) {
                     password.setError("Password is required");
                     return;
                 }
-                fAuth.signInWithEmailAndPassword(useremail,userpassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth.signInWithEmailAndPassword(useremail, userpassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext() , ListsActivity.class));
-                        }
-                        else {
+                            startActivity(new Intent(getApplicationContext(), ListsActivity.class));
+                        } else {
                             Toast.makeText(LoginActivity.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
@@ -70,6 +70,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void creat(View view) {
-        startActivity(new Intent(getApplicationContext() , CreateAccountActivity.class));
+        startActivity(new Intent(getApplicationContext(), CreateAccountActivity.class));
     }
 }

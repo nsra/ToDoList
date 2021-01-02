@@ -28,6 +28,7 @@
         android:layout_height="15dp"
         android:layout_marginTop="32dp"
         android:src="@drawable/back"
+        android:onClick="backed"
         app:layout_constraintEnd_toStartOf="@+id/tv5"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +42,7 @@
         android:layout_height="15dp"
         android:layout_marginTop="32dp"
         android:text="@string/edit"
+        android:onClick="update"
         android:textColor="@android:color/white"
         android:textStyle="bold"
         android:layout_marginEnd="10dp"
@@ -62,56 +64,87 @@
         app:layout_constraintVertical_bias="1.0"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/meet_joseph"
-            android:textColor="#2dde98"
-            android:textSize="28sp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="120dp"
-            android:background="@drawable/btn_shape"
-            android:text="@string/meet" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="70dp"
-            android:text="@string/_01_october_2018_10_00"
-            android:textColor="@android:color/black" />
-
-        <View
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="140dp"
-            android:layout_marginEnd="40dp"
-            android:background="@android:color/black" />
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/meet_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/meet_joseph"
+                android:textColor="#2dde98"
+                android:textSize="20sp"
+                tools:ignore="MissingConstraints"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="150dp"
-            android:text="Description"
-            android:textColor="#2dde98"
-            android:textSize="28sp" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="120dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_shape"
+                android:text="@string/meet"
+                tools:ignore="MissingConstraints"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginEnd="30dp"
-            android:text="Have to meet him becaouse i want to \n show hime my latest appdesign in person " />
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:text="@string/_01_october_2018_10_00"
+                android:textColor="@android:color/black"
+                tools:ignore="MissingConstraints"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/meet_name"/>
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/black"
+                tools:ignore="MissingConstraints"
+                app:layout_constraintTop_toBottomOf="@id/date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Description"
+                android:textColor="#2dde98"
+                android:textSize="28sp"
+                android:layout_marginTop="20dp"
+                tools:ignore="MissingConstraints"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view"/>
+
+            <EditText
+                android:id="@+id/note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="30dp"
+                android:text="Have to meet him becaouse i want to \n show hime my latest appdesign in person "
+                tools:ignore="MissingConstraints"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/description"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </LinearLayout>

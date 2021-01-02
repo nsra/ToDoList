@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,30 +17,28 @@ import com.example.todolistapp.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ListViewHolder> {
+public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ListViewHolder> implements Filterable {
 
-    List<Lists> mlists = new ArrayList<>();
-    List<Lists> filteredUserData ;
-    OnItemCilckListener listener ;
-    RecyclerView mRecyclrerView;
+    List<Lists> mlists;
+    List<Lists> filterLists;
+    OnItemCilckListener listener;
     Context context;
 
-    public ListsAdapter(ArrayList<Lists> lists, OnItemCilckListener listener, RecyclerView mRecyclrerView) {
+    public ListsAdapter(ArrayList<Lists> lists, OnItemCilckListener listener) {
         this.mlists = lists;
         this.listener = listener;
-        this.mRecyclrerView = mRecyclrerView;
-        this.filteredUserData = new ArrayList<>(lists) ;
+        this.filterLists= lists;
     }
 
     @NonNull
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context=parent.getContext();
+        context = parent.getContext();
         return new ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.listrow, parent, false));
     }
 
-    public void setLists(List<Lists> lists){
-        mlists = lists ;
+    public void setLists(List<Lists> lists) {
+        mlists = lists;
         notifyDataSetChanged();
 
     }
@@ -51,67 +49,64 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ListViewHold
 //        holder.list_name.setText(lists.get(position).getListname());
 //        holder.list_num.setText(lists.get(position).getListnum());
 
-        Lists currentlist =  mlists.get(position);
+        Lists currentlist = filterLists.get(position);
         holder.list_name.setText(currentlist.getListname());
 
     }
 
     @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
     public int getItemCount() {
-        return mlists.size();
+        return filterLists.size();
     }
 
     public class ListViewHolder extends RecyclerView.ViewHolder {
 
-        TextView list_name ;
-
-
+        TextView list_name;
 
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
             list_name = itemView.findViewById(R.id.list_name);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            itemView.setOnClickListener(v -> listener.onItemClick(getAdapterPosition()));
+        }
+    }
 
-                    int pos = mRecyclrerView.getChildAdapterPosition(v);
-                    listener.onItemClick(mlists.get(pos));
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    filterLists = mlists;
+                } else {
+                    List<Lists> filteredList = new ArrayList<>();
+                    for (Lists row : mlists) {
+                        if (row.getListname().toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(row);
+                        }
+                    }
 
-
+                    filterLists = filteredList;
                 }
-            });
-        }}
-//    public Filter getFilter(){
-//        return  new Filter() {
-//            @Override
-//            protected FilterResults performFiltering(CharSequence charSequence) {
-//                String key = charSequence.toString();
-//                if(key.isEmpty()){
-//                    filteredUserData = mlists ;
-//                }else {
-//                    List<Lists> lstFilter = new ArrayList<>();
-//                    for (Lists row : mlists){
-//                        if (row.getListname().toLowerCase().contains(key.toLowerCase())){
-//                            lstFilter.add(row);
-//                        }
-//                    }
-//                    filteredUserData = lstFilter ;
-//                }
-//                FilterResults filterResults = new FilterResults();
-//                filterResults.values = filteredUserData ;
-//                return filterResults;
-//            }
-//            @Override
-//            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-//                filteredUserData=(List<Lists>) filterResults.values;
-//                notifyDataSetChanged();
-//            }
-//        };
-//
-//    }
-    public void filterList(ArrayList<Lists> filteredList){
-        mlists = filteredList;
-        notifyDataSetChanged();
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filterLists;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                filterLists = (ArrayList<Lists>) filterResults.values;
+
+                // refresh the list with filtered data
+                notifyDataSetChanged();
+            }
+        };
     }
 }

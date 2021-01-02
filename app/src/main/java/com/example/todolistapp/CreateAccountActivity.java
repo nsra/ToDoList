@@ -18,9 +18,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
-    EditText name , email , password ;
-    Button creat ;
-    FirebaseAuth fAuth ;
+    EditText name, email, password;
+    Button creat;
+    FirebaseAuth fAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +30,8 @@ public class CreateAccountActivity extends AppCompatActivity {
         initialization();
         creatListener();
 
-        if (fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext() , ListsActivity.class));
+        if (fAuth.getCurrentUser() != null) {
+            startActivity(new Intent(getApplicationContext(), ListsActivity.class));
             finish();
 
 
@@ -56,29 +56,29 @@ public class CreateAccountActivity extends AppCompatActivity {
 
                 //to check all edittext is fill
 
-                if (TextUtils.isEmpty(username)){
+                if (TextUtils.isEmpty(username)) {
                     name.setError("Name is required");
                     return;
                 }
-                if (TextUtils.isEmpty(useremail)){
+                if (TextUtils.isEmpty(useremail)) {
                     email.setError("Email is required");
                     return;
                 }
-                if (TextUtils.isEmpty(userpassword)){
+                if (TextUtils.isEmpty(userpassword)) {
                     email.setError("Password is required");
                     return;
                 }
 
                 //register user in firebase
 
-                fAuth.createUserWithEmailAndPassword(useremail,userpassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth.createUserWithEmailAndPassword(useremail, userpassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             Toast.makeText(CreateAccountActivity.this, "user created", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext() , ListsActivity.class));
+                            startActivity(new Intent(getApplicationContext(), ListsActivity.class));
 
-                        }else {
+                        } else {
                             Toast.makeText(CreateAccountActivity.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
@@ -88,14 +88,12 @@ public class CreateAccountActivity extends AppCompatActivity {
                 });
 
 
-
-
             }
         });
     }
 
 
     public void Login(View view) {
-        startActivity(new Intent(getApplicationContext() , LoginActivity.class));
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
     }
 }

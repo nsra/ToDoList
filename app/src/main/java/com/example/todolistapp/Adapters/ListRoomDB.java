@@ -13,13 +13,14 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.todolistapp.Models.Lists;
 import com.example.todolistapp.Models.Tasks;
 
-@Database(entities = {Lists.class, Tasks.class} , version = 2)
+@Database(entities = {Lists.class, Tasks.class,Note.class} , version = 3)
 abstract
 class ListRoomDB extends RoomDatabase {
 
     private static ListRoomDB instance ;
     public abstract ListsDao listsDao();
     public abstract TaskDao taskDao();
+    public abstract NoteDao noteDao();
 
 
     //Singilton
@@ -52,9 +53,11 @@ class ListRoomDB extends RoomDatabase {
 
         private ListsDao mListsDao ;
         private TaskDao mtaskDao ;
+        private NoteDao mNoteDao ;
         PopulateDataAsyncTask(ListRoomDB db){
             mListsDao = db.listsDao();
             mtaskDao=db.taskDao();
+            mNoteDao=db.noteDao();
         }
 
 
@@ -63,6 +66,9 @@ class ListRoomDB extends RoomDatabase {
             mListsDao.insert(new Lists("Dlia"));
             mListsDao.insert(new Lists("Personal"));
             mListsDao.insert(new Lists("University"));
+
+            mNoteDao.update(new Note("meet the doctour"));
+
 
             return null;
         }
